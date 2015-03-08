@@ -6,7 +6,10 @@ use warnings ;
 use Text::Xslate ;
 my $template = Text::Xslate->new() ;
 
-my @card_suits = qw( yellow_star red_circle) ;
+my @card_suits = qw( yellow_star
+                     red_circle
+                     blue_triangle
+               ) ;
 
 foreach my $card_suit (@card_suits) {
     my $example_html = start_html( $card_suit ) ;
