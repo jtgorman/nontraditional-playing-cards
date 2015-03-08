@@ -10,6 +10,7 @@ my @card_suits = qw( yellow_star
                      red_circle
                      blue_triangle
                      brown_rectangle
+                     green_plus
                ) ;
 
 foreach my $card_suit (@card_suits) {
