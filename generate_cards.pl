@@ -9,6 +9,7 @@ my $template = Text::Xslate->new() ;
 my @card_suits = qw( yellow_star
                      red_circle
                      blue_triangle
+                     brown_rectangle
                ) ;
 
 foreach my $card_suit (@card_suits) {
