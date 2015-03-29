@@ -33,6 +33,12 @@ my @card_suits = ( { color => 'ffff00',
                    { color => 'ff0000',
                      color_name => 'red',
                      symbol => 'circle', },
+                   { color => '0000ff',
+                     color_name => 'blue',
+                     symbol => 'triangle',},
+                   { color => 'aa4400',
+                     color_name => 'brown',
+                     symbol => 'rectangle', },
                    );
 
 foreach my $card_suit_ref (@card_suits) {
