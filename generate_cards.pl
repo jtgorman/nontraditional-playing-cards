@@ -39,6 +39,9 @@ my @card_suits = ( { color => 'ffff00',
                    { color => 'aa4400',
                      color_name => 'brown',
                      symbol => 'rectangle', },
+                   { color => '00bc00',
+                     color_name => 'green',
+                     symbol => 'plus', },
                    );
 
 foreach my $card_suit_ref (@card_suits) {

@@ -1,0 +1,19 @@
+<path d="M15,0
+         V15
+         H0
+         V25
+         H15
+         V40
+         H25
+         V25
+         H40
+         V15
+         H25
+         V0
+         H15 z"
+style="fill:#<: $color :>;
+       stroke:#000000;
+       stroke-width:1;
+       stroke-opacity:1;
+       fill-opacity:1"
+ />
