@@ -31,8 +31,8 @@ foreach my $card_suit_ref (@card_suits) {
         
         my $digit = $_ ;
         
-        my $rendered_filename = "generated/${card_suit_name}_${digit}.svg" ;
-        open my $rendered_fh, '>', $rendered_filename or die "Couldn't open $rendered_filename $! " ;
+        my $rendered_filename = "${card_suit_name}_${digit}.svg" ;
+        open my $rendered_fh, '>','generated/' . $rendered_filename or die "Couldn't open generated/${rendered_filename} $! " ;
         
         my $template_name = "single_digit_base.tx" ; 
         if( $digit >= 10 && $digit < 100 ) {
@@ -42,7 +42,7 @@ foreach my $card_suit_ref (@card_suits) {
         my $symbol_svg = render_symbol( $symbol . q{.tx},
                                         $card_suit_ref, ) ;
 
-        print "$symbol_svg \n\n" ;
+        
         render_card($template_name,
                     $card_suit_ref,
                     $symbol_svg,
