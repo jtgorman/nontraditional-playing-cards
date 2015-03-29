@@ -14,7 +14,7 @@
    height="100%">
   <defs>
     <g id="suit_symbol">
-: block suit_symbol -> { }
+    <: $symbol_svg :>
     </g>
   </defs>
 

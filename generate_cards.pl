@@ -3,7 +3,7 @@
 use strict ;
 use warnings ;
 
-use Text::Xslate ;
+use Text::Xslate qw( mark_raw );
 my $template = Text::Xslate->new() ;
 
 #my @card_suits = qw( yellow_star
@@ -24,28 +24,31 @@ foreach my $card_suit_ref (@card_suits) {
     my $color = $card_suit_ref->{color} ;
     
     my $card_suit_name = $card_suit_ref->{color_name} . '_' . $symbol ; 
-
+    
     my $example_html = start_html( $card_suit_ref ) ;
-
-
-    #    for( 0 .. 19 ) {
-    for( 10 .. 19 ) {
+        
+    for( 0 .. 19 ) {
         
         my $digit = $_ ;
-       
+        
         my $rendered_filename = "generated/${card_suit_name}_${digit}.svg" ;
         open my $rendered_fh, '>', $rendered_filename or die "Couldn't open $rendered_filename $! " ;
         
-        my $template_name = "single_digit_${symbol}.tx" ; 
+        my $template_name = "single_digit_base.tx" ; 
         if( $digit >= 10 && $digit < 100 ) {
-            $template_name = "double_digit_${symbol}.tx" ; 
+            $template_name = "double_digit_base.tx" ; 
         }
-        
+
+        my $symbol_svg = render_symbol( $symbol . q{.tx},
+                                        $card_suit_ref, ) ;
+
+        print "$symbol_svg \n\n" ;
         render_card($template_name,
                     $card_suit_ref,
+                    $symbol_svg,
                     $digit,
                     $rendered_fh, ) ;
-
+        
         $example_html
             .= "<p>"
             . create_svg_reference( $rendered_filename )
@@ -94,15 +97,35 @@ sub create_svg_reference {
     return qq{<img width="100px" height="100px" src="${rendered_filename}" />} ;
 }
 
-sub render_card {
+sub render_symbol {
 
     my $template_file = shift ;
     my $card_suit_ref = shift ;
+
+    use Data::Dumper ;
+    print $template_file . "\n\n" ;
+    print Dumper( $card_suit_ref ) ;
+    
+    my %vars = ( color => $card_suit_ref->{color}, ) ;
+
+    my $symbol_template = Text::Xslate->new() ;
+        
+    my $svg_text =  $symbol_template->render($template_file,
+                                             \%vars ) ;
+    return $svg_text ;
+}
+
+sub render_card {
+    
+    my $template_file = shift ;
+    my $card_suit_ref = shift ;
+    my $symbol_svg = shift ;
     my $digit = shift ;
     my $target_fh = shift ; 
 
     my %vars = (digit => $digit,
                 color => $card_suit_ref->{color},
+                symbol_svg => mark_raw( $symbol_svg ),
             ) ;
     
     print $target_fh $template->render($template_file,

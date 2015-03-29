@@ -1,6 +1,4 @@
-: cascade double_digit_base
-: override suit_symbol {
-<path
+<path           
      style="fill:#<: $color :>;
             fill-opacity:1;
             fill-rule:nonzero;
@@ -22,4 +20,3 @@
      transform="scale(.75,.79)"
       />
 />
-: } 
