@@ -6,6 +6,20 @@ use warnings ;
 use Text::Xslate qw( mark_raw );
 my $template = Text::Xslate->new() ;
 
+use Getopt::Long ;
+
+my $base = 'base' ;
+
+my $use_guides = 0 ;
+GetOptions('use-guides' => \$use_guides,
+           'with-guides' => \$use_guides,
+       ) ;
+
+if($use_guides) {
+    print "Using guideboxes around suit symbols\n" ;
+    $base = 'base_guides' ;
+}
+
 #my @card_suits = qw( yellow_star
 #                     red_circle
 #                     blue_triangle
@@ -15,9 +29,12 @@ my $template = Text::Xslate->new() ;
 
 my @card_suits = ( { color => 'ffff00',
                      color_name => 'yellow',
-                     symbol => 'star', }, ) ;
-                       
-      
+                     symbol => 'star', },
+                   { color => 'ff0000',
+                     color_name => 'red',
+                     symbol => 'circle', },
+                   );
+
 foreach my $card_suit_ref (@card_suits) {
     
     my $symbol = $card_suit_ref->{symbol} ;
@@ -34,9 +51,9 @@ foreach my $card_suit_ref (@card_suits) {
         my $rendered_filename = "${card_suit_name}_${digit}.svg" ;
         open my $rendered_fh, '>','generated/' . $rendered_filename or die "Couldn't open generated/${rendered_filename} $! " ;
         
-        my $template_name = "single_digit_base.tx" ; 
+        my $template_name = "single_digit_${base}.tx" ; 
         if( $digit >= 10 && $digit < 100 ) {
-            $template_name = "double_digit_base.tx" ; 
+            $template_name = "double_digit_${base}.tx" ; 
         }
 
         my $symbol_svg = render_symbol( $symbol . q{.tx},
@@ -101,10 +118,6 @@ sub render_symbol {
 
     my $template_file = shift ;
     my $card_suit_ref = shift ;
-
-    use Data::Dumper ;
-    print $template_file . "\n\n" ;
-    print Dumper( $card_suit_ref ) ;
     
     my %vars = ( color => $card_suit_ref->{color}, ) ;
 
