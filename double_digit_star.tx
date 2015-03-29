@@ -1,0 +1,25 @@
+: cascade double_digit_base
+: override suit_symbol {
+<path
+     style="fill:#<: $color :>;
+            fill-opacity:1;
+            fill-rule:nonzero;
+            stroke:#000000;
+            stroke-width:1;
+            stroke-miterlimit:0.1;
+            stroke-opacity:1;stroke-dasharray:none"
+     id="path3001-3"
+     d="m 43,50
+        -16.26801,-10.94139
+        -16.07783,11.21899
+        5.37879,-18.85288
+        -15.63822,-11.82407
+        19.59229,-0.71033
+        6.41288,-18.52666
+        6.72991,18.41387
+        19.6016,0.37396
+        -15.43298,12.09073 z"
+     transform="scale(.75,.79)"
+      />
+/>
+: } 
