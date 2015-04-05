@@ -11,9 +11,5 @@ Generating:
 ./generate_cards.pl
 
 TODOs:
-
-* Pull color information into css styelsheets and make into templates (to make easier to change suit colors, etc).
 * need to research how many svg renders in epub software support defs + xlink
-* Clean up the transforms and "suit symbols", using defs and use xlink 
-* refactor templates, have just templates for css and single/double digits. Then when generating specify certain values (color, symbol svg) use.
 
