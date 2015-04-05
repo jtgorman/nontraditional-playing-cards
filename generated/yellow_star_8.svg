@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml-stylesheet type="text/css" href="content/style.css" ?>
 <svg
    xmlns:dc="http://purl.org/dc/elements/1.1/"
    xmlns:cc="http://creativecommons.org/ns#"
@@ -35,7 +36,6 @@
         -15.43298,12.09073 z"
      transform="scale(.75,.79)"
       />
-/>
 
     </g>
   </defs>

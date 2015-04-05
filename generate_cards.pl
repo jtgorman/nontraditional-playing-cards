@@ -3,6 +3,8 @@
 use strict ;
 use warnings ;
 
+use File::Copy::Recursive qw( rcopy);
+
 use Text::Xslate qw( mark_raw );
 my $template = Text::Xslate->new() ;
 
@@ -20,13 +22,6 @@ if($use_guides) {
     $base = 'base_guides' ;
 }
 
-#my @card_suits = qw( yellow_star
-#                     red_circle
-#                     blue_triangle
-#                     brown_rectangle
-#                     green_plus
-#               ) ;
-
 my @card_suits = ( { color => 'ffff00',
                      color_name => 'yellow',
                      symbol => 'star', },
@@ -43,6 +38,8 @@ my @card_suits = ( { color => 'ffff00',
                      color_name => 'green',
                      symbol => 'plus', },
                    );
+
+copy_content() ;
 
 foreach my $card_suit_ref (@card_suits) {
     
@@ -153,4 +150,9 @@ sub render_card {
     print $target_fh $template->render($template_file,
                                        \%vars) ;
     
+}
+
+sub copy_content {
+
+    rcopy("content","generated/content") ;
 }
